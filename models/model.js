@@ -2,9 +2,9 @@ const db = require("../utilies/connectdb");
 const sql = require("./config");
 
 module.exports = {
-  insertUser: async function insertUser(username, password, email) {
+  insertUser: async function insertUser(username, email, password) {
     try {
-      await db.execute(sql.insertUserSQL, [username, password, email]);
+      await db.execute(sql.insertUserSQL, [username, email, password]);
       return { message: sql.success, isSuccesfull: true };
     } catch (error) {
       console.log(error);
@@ -12,11 +12,12 @@ module.exports = {
       return { message: sql.userExist, isSuccesfull: false };
     }
   },
+
   checkIfUserExists: async function (username, password) {
     try {
       const [response] = await db.execute(sql.checkIfUserExist, [username]);
-
       const userExist = response.length >= 1;
+
       if (!userExist) {
         return { message: sql.userDoesntExist, isSuccesfull: false };
       }
@@ -35,8 +36,9 @@ module.exports = {
       console.log(error.sqlMessage);
     }
   },
+
   checkPassword: function (userData, password) {
-    if (userData.password === password) return true;
+    if (userData.password === password.toString()) return true;
     return false;
   },
 };

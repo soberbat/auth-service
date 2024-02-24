@@ -1,28 +1,11 @@
 version: "3"
 
 services:
-  redis:
-    image: redis
+  auth:
+    build: .
     ports:
-      - 6379:6379
-  mysql:
-    image: mysql:latest
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
+      - 3004:3001
     volumes:
-      - mysql-data:/var/lib/mysql
-  app1:
-    image: backend
-    ports:
-      - 3001:3001
-    volumes:
-      - ./:/src/src/app
+      - ./:/app
     environment:
       - PORT=3001
-volumes:
-  mysql-data:

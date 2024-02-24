@@ -1,14 +1,16 @@
 const session = require("express-session");
 const { createClient } = require("redis");
 const RedisStore = require("connect-redis").default;
+require("dotenv").config();
 
 const redisClient = createClient({
-  password: "1234",
+  password: process.env.REDIS_PASSWORD,
   socket: {
-    host: "redis-14600.c323.us-east-1-2.ec2.cloud.redislabs.com",
-    port: 14600,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
   },
 });
+
 redisClient.connect().catch(console.error);
 
 const redisStore = new RedisStore({
