@@ -72,8 +72,3 @@ https://cookie-auth.web.app/
     - 200 OK - If the user is authenticated and can access the dashboard.
     - 500 Internal Server Error - If the user is not authenticated and cannot access the dashboard.
   - Content: String indicating whether the route is protected or not.
-
-## Error Handling
-
-- For invalid or incomplete requests, the API returns appropriate HTTP status codes along with error messages.
-- In case of server errors, the API returns a 500 Internal Server Error status code.
