@@ -1,3 +1,27 @@
 /node_modules
 
 .env
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.terraform.lock.hcl
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Exclude override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore Terraform lock files
+*.tflock

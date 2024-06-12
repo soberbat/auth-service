@@ -3,6 +3,7 @@ FROM node:lts-alpine AS base
 
 WORKDIR /app
 
+
 COPY package*.json ./
 
 RUN npm ci --only=production
@@ -13,5 +14,6 @@ COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
 EXPOSE 3000
+
 
 CMD ["npm", "run", "start"]

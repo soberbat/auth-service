@@ -1,11 +1,12 @@
+require("dotenv").config();
 const PORT = process.env.PORT;
-
 const { corsOptions, sessionOptions } = require("./config");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
+const seed = require("./utilies/seed");
 
 const dashboardController = require("./controllers/dashboard.controller");
 const logoutController = require("./controllers/logout.controller");

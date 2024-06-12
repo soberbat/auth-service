@@ -1,7 +1,5 @@
 const Model = require("../models/model");
 
-const PORT = process.env.PORT;
-
 module.exports = async (req, res) => {
   const { username, password, email } = req.body;
   const { isSuccesfull, message } = await Model.insertUser(

@@ -4,7 +4,7 @@ const sql = require("./config");
 module.exports = {
   insertUser: async function insertUser(username, email, password) {
     try {
-      await db.execute(sql.insertUserSQL, [username, email, password]);
+      await db.query(sql.insertUserSQL, [username, email, password]);
       return { message: sql.success, isSuccesfull: true };
     } catch (error) {
       console.log(error);
@@ -15,14 +15,14 @@ module.exports = {
 
   checkIfUserExists: async function (username, password) {
     try {
-      const [response] = await db.execute(sql.checkIfUserExist, [username]);
-      const userExist = response.length >= 1;
+      const response = await db.query(sql.checkIfUserExist, [username]);
+      const userExist = response.rowCount >= 1;
 
       if (!userExist) {
         return { message: sql.userDoesntExist, isSuccesfull: false };
       }
 
-      const userData = response[0];
+      const userData = response.rows[0];
       const isPasswordCorrect = module.exports.checkPassword(
         userData,
         password
